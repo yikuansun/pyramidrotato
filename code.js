@@ -5,6 +5,14 @@ groupThing = document.createElementNS(svgns, "g");
 groupThing.setAttribute("transform", "translate(426, 240)");
 document.getElementById("view").appendChild(groupThing);
 
+points = [
+    {x: -100, y: 100, z: -0.25},
+    {x: 100, y: 100, z: -0.25},
+    {x: -100, y: 100, z: 0.25},
+    {x: 100, y: 100, z: 0.25},
+    {x: 0, y: -50, z: 0}
+];
+
 function drawLine3D(point1, point2) {
     line = document.createElementNS(svgns, "line");
     shift = 1.25;
@@ -49,18 +57,47 @@ function PointRotation(point, xaxis, yaxis, zaxis) {
 
 }
 
-points = [
-    {x: -100, y: 100, z: -0.25},
-    {x: 100, y: 100, z: -0.25},
-    {x: -100, y: 100, z: 0.25},
-    {x: 100, y: 100, z: 0.25},
-    {x: 0, y: -50, z: 0}
-];
-
-for (i = 0; i < points.length; i++) {
-    for (j = 0; j < points.length; j++) {
-        if (i < j) {
-            drawLine3D(PointRotation(points[i], 1, 0, 0), PointRotation(points[j], 1, 0, 0));
+function render(xrotate, yrotate) {
+    for (i = 0; i < points.length; i++) {
+        for (j = 0; j < points.length; j++) {
+            if (i < j) {
+                drawLine3D(PointRotation(points[i], xrotate, yrotate, 0), PointRotation(points[j], xrotate, yrotate, 0));
+            }
         }
     }
 }
+
+xrotate = 0;
+yrotate = 0;
+map = {};
+
+function main() {
+
+    onkeydown = onkeyup = function(e){
+        e = e || event;
+        map[e.keyCode] = e.type == 'keydown';
+    }
+
+    if (map[40]) {
+        xrotate -= 0.001;
+    }
+
+    if (map[39]) {
+        yrotate -= 0.001;
+    }
+
+    if (map[38]) {
+        xrotate += 0.001;
+    }
+
+    if (map[37]) {
+        yrotate += 0.001;
+    }
+
+    groupThing.innerHTML = "";
+    render(xrotate, yrotate);
+    requestAnimationFrame(main);
+
+}
+
+main();
