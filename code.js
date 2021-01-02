@@ -1,21 +1,21 @@
 svgns = "http://www.w3.org/2000/svg";
-viewfactor = 100;
+viewfactor = 500;
 
 groupThing = document.createElementNS(svgns, "g");
 groupThing.setAttribute("transform", "translate(426, 240)");
 document.getElementById("view").appendChild(groupThing);
 
 points = [
-    {x: -100, y: 100, z: -25},
-    {x: 100, y: 100, z: -25},
-    {x: -100, y: 100, z: 25},
-    {x: 100, y: 100, z: 25},
+    {x: -100, y: 100, z: -100},
+    {x: 100, y: 100, z: -100},
+    {x: -100, y: 100, z: 100},
+    {x: 100, y: 100, z: 100},
     {x: 0, y: -50, z: 0}
 ];
 
 function drawLine3D(point1, point2) {
     line = document.createElementNS(svgns, "line");
-    shift = 125;
+    shift = 500;
     point1_2d = {
         x: point1.x / (point1.z + shift) * viewfactor,
         y: point1.y / (point1.z + shift) * viewfactor
