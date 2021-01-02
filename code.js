@@ -8,7 +8,7 @@ document.getElementById("view").appendChild(groupThing);
 lengths = 100;
 color = '#000000';
 
-document.getElementById('lengths').addEventListener('change', () => {
+document.getElementById('lengths').addEventListener('input', () => {
     lengths = Number(document.getElementById('lengths').value);
 
     points = [
@@ -20,7 +20,7 @@ document.getElementById('lengths').addEventListener('change', () => {
     ];
 })
 
-document.getElementById('color').addEventListener('change', () => {
+document.getElementById('color').addEventListener('input', () => {
     color = document.getElementById('color').value;
 })
 
@@ -90,7 +90,7 @@ yrotate = 0;
 speed = 0.1
 map = {};
 
-document.getElementById('speed').addEventListener('change', () => {
+document.getElementById('speed').addEventListener('input', () => {
     speed = Number(document.getElementById('speed').value);
 })
 
