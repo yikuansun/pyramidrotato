@@ -32,7 +32,6 @@ function drawLine3D(point1, point2) {
     groupThing.appendChild(line);
 }
 
-// not working yet
 function PointRotation(point, xaxis, yaxis, zaxis) {
 
     oldpoint = JSON.parse(JSON.stringify(point));
