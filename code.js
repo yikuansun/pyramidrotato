@@ -47,6 +47,6 @@ points = [
 
 for (i = 0; i < points.length; i++) {
     for (j = 0; j < points.length; j++) {
-        drawLine3D(PointRotation(points[i], 0, 0, 1), PointRotation(points[j], 0, 0, 1));
+        drawLine3D(PointRotation(points[i], 0, 0, 0), PointRotation(points[j], 0, 0, 0));
     }
 }
