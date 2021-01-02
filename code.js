@@ -5,12 +5,31 @@ groupThing = document.createElementNS(svgns, "g");
 groupThing.setAttribute("transform", "translate(426, 240)");
 document.getElementById("view").appendChild(groupThing);
 
+lengths = 100;
+color = '#000000';
+
+document.getElementById('lengths').addEventListener('change', () => {
+    lengths = Number(document.getElementById('lengths').value);
+
+    points = [
+        {x: -1 * lengths, y: lengths, z: -1 * lengths},
+        {x: lengths , y: lengths, z: -1 * lengths},
+        {x: -1 * lengths, y: lengths , z: lengths},
+        {x: lengths, y: lengths, z: lengths},
+        {x: 0, y: -1 * lengths, z: 0}
+    ];
+})
+
+document.getElementById('color').addEventListener('change', () => {
+    color = document.getElementById('color').value;
+})
+
 points = [
-    {x: -100, y: 100, z: -100},
-    {x: 100, y: 100, z: -100},
-    {x: -100, y: 100, z: 100},
-    {x: 100, y: 100, z: 100},
-    {x: 0, y: -100, z: 0}
+    {x: -1 * lengths, y: lengths, z: -1 * lengths},
+    {x: lengths , y: lengths, z: -1 * lengths},
+    {x: -1 * lengths, y: lengths , z: lengths},
+    {x: lengths, y: lengths, z: lengths},
+    {x: 0, y: -1 * lengths, z: 0}
 ];
 
 function drawLine3D(point1, point2) {
@@ -28,7 +47,7 @@ function drawLine3D(point1, point2) {
     line.setAttribute("y1", point1_2d.y);
     line.setAttribute("x2", point2_2d.x);
     line.setAttribute("y2", point2_2d.y);
-    line.setAttribute("stroke", "black");
+    line.setAttribute("stroke", color);
     groupThing.appendChild(line);
 }
 
@@ -68,7 +87,12 @@ function render(xrotate, yrotate) {
 
 xrotate = 0;
 yrotate = 0;
+speed = 0.1
 map = {};
+
+document.getElementById('speed').addEventListener('change', () => {
+    speed = Number(document.getElementById('speed').value);
+})
 
 function main() {
 
@@ -78,19 +102,19 @@ function main() {
     }
 
     if (map[40]) {
-        xrotate += 0.1;
+        xrotate += speed;
     }
 
     if (map[39]) {
-        yrotate -= 0.1;
+        yrotate -= speed;
     }
 
     if (map[38]) {
-        xrotate -= 0.1;
+        xrotate -= speed;
     }
 
     if (map[37]) {
-        yrotate += 0.1;
+        yrotate += speed;
     }
 
     groupThing.innerHTML = "";
