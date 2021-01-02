@@ -79,7 +79,7 @@ function main() {
     }
 
     if (map[40]) {
-        xrotate -= 0.1;
+        xrotate += 0.1;
     }
 
     if (map[39]) {
@@ -87,7 +87,7 @@ function main() {
     }
 
     if (map[38]) {
-        xrotate += 0.1;
+        xrotate -= 0.1;
     }
 
     if (map[37]) {
