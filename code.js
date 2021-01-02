@@ -1,21 +1,21 @@
 svgns = "http://www.w3.org/2000/svg";
-viewfactor = 1;
+viewfactor = 100;
 
 groupThing = document.createElementNS(svgns, "g");
 groupThing.setAttribute("transform", "translate(426, 240)");
 document.getElementById("view").appendChild(groupThing);
 
 points = [
-    {x: -100, y: 100, z: -0.25},
-    {x: 100, y: 100, z: -0.25},
-    {x: -100, y: 100, z: 0.25},
-    {x: 100, y: 100, z: 0.25},
+    {x: -100, y: 100, z: -25},
+    {x: 100, y: 100, z: -25},
+    {x: -100, y: 100, z: 25},
+    {x: 100, y: 100, z: 25},
     {x: 0, y: -50, z: 0}
 ];
 
 function drawLine3D(point1, point2) {
     line = document.createElementNS(svgns, "line");
-    shift = 1.25;
+    shift = 125;
     point1_2d = {
         x: point1.x / (point1.z + shift) * viewfactor,
         y: point1.y / (point1.z + shift) * viewfactor
@@ -79,19 +79,19 @@ function main() {
     }
 
     if (map[40]) {
-        xrotate -= 0.001;
+        xrotate -= 0.1;
     }
 
     if (map[39]) {
-        yrotate -= 0.001;
+        yrotate -= 0.1;
     }
 
     if (map[38]) {
-        xrotate += 0.001;
+        xrotate += 0.1;
     }
 
     if (map[37]) {
-        yrotate += 0.001;
+        yrotate += 0.1;
     }
 
     groupThing.innerHTML = "";
