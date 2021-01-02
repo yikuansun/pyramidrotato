@@ -26,15 +26,27 @@ function drawLine3D(point1, point2) {
 
 // not working yet
 function PointRotation(point, xaxis, yaxis, zaxis) {
-    point.y = point.y * Math.cos(xaxis) - point.z * Math.sin(xaxis);
-    point.z = point.y * Math.sin(xaxis) + point.z * Math.cos(xaxis);
 
-    point.x = point.z * Math.sin(yaxis) + point.x * Math.cos(yaxis);
-    point.z = point.z * Math.cos(yaxis) - point.x * Math.sin(yaxis);
+    oldpoint = JSON.parse(JSON.stringify(point));
+    newpoint = JSON.parse(JSON.stringify(point));
 
-    point.x = point.x * Math.cos(zaxis) - point.y * Math.sin(zaxis);
-    point.y = point.x * Math.sin(zaxis) + point.y * Math.cos(zaxis);
-    return point;
+    newpoint.y = oldpoint.y * Math.cos(xaxis) - oldpoint.z * Math.sin(xaxis);
+    newpoint.z = oldpoint.y * Math.sin(xaxis) + oldpoint.z * Math.cos(xaxis);
+
+    oldpoint = JSON.parse(JSON.stringify(newpoint));
+    newpoint = JSON.parse(JSON.stringify(newpoint));
+
+    newpoint.x = oldpoint.z * Math.sin(yaxis) + oldpoint.x * Math.cos(yaxis);
+    newpoint.z = oldpoint.z * Math.cos(yaxis) - oldpoint.x * Math.sin(yaxis);
+
+    oldpoint = JSON.parse(JSON.stringify(newpoint));
+    newpoint = JSON.parse(JSON.stringify(newpoint));
+
+    newpoint.x = oldpoint.x * Math.cos(zaxis) - oldpoint.y * Math.sin(zaxis);
+    newpoint.y = oldpoint.x * Math.sin(zaxis) + oldpoint.y * Math.cos(zaxis);
+
+    return newpoint;
+
 }
 
 points = [
@@ -47,6 +59,8 @@ points = [
 
 for (i = 0; i < points.length; i++) {
     for (j = 0; j < points.length; j++) {
-        drawLine3D(PointRotation(points[i], 0, 0, 0), PointRotation(points[j], 0, 0, 0));
+        if (i < j) {
+            drawLine3D(PointRotation(points[i], 1, 0, 0), PointRotation(points[j], 1, 0, 0));
+        }
     }
 }
